@@ -1,0 +1,32 @@
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "requireConfigFile": false,
+    "allowImportExportEverywhere": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    },
+    "codeFrame": false
+  },
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "max-len": ["error", { "code": 180 }],
+    "prefer-promise-reject-errors": ["off"],
+    "react/jsx-filename-extension": ["off"],
+    "react/prop-types": ["off"],
+    "operator-linebreak": ["off"],
+    "linebreak-style": 0,
+    "no-console": "off",
+    "no-return-assign": ["off"],
+    "jsx-a11y/anchor-is-valid": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "indent": ["off"],
+    "react/jsx-indent": ["off"]
+  },
+  "plugins": ["react"]
+}

@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.spinner {
+  background-image: url('../../public/gifs/spinner.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+}
