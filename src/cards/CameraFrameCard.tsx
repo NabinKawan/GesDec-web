@@ -130,7 +130,7 @@ export default function cameraRefFrameCard() {
     }
     if (modelRef.current == null) {
       modelRef.current = '';
-      tf.loadLayersModel('http://localhost:5000/model').then((value) => {
+      tf.loadLayersModel('https://gesdec-api.herokuapp.com/model').then((value) => {
         modelRef.current = value;
         // modelRef.current.save('indexeddb://SLR');
         console.log(modelRef.current);

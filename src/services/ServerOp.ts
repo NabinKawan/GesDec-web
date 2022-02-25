@@ -2,7 +2,7 @@ export default class ServerOp {
   static async postFeedback(feedback: string) {
     try {
       console.log('hello');
-      const response = await fetch('http://localhost:5000/feedback', {
+      const response = await fetch('https://gesdec-api.herokuapp.com/feedback', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
