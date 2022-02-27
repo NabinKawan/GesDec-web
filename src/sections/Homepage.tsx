@@ -18,7 +18,7 @@ export default function Homepage() {
     <div>
       <Navbar from="Homepage" />
       {/* banner container */}
-      <div className="bg-[#1A2238] pt-10 pb-24 w-full ">
+      <div className="bg-[#1A2238] pt-10 pb-24 w-full px-4 ">
         <BannerDescription />
       </div>
       <div className="flex lg:flex-row md:flex-col sm:flex-col lg:space-x-36 sm:space-x-0 sm:items-center justify-between lg:mx-44 sm:mx-4 mt-[65px] mb-28">
