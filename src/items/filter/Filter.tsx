@@ -14,7 +14,7 @@ export default function Filter({ items }) {
   };
 
   return (
-    <div className="flex space-x-6 justify-center cursor-pointer text-sm font-sans">
+    <div className="flex space-x-6 justify-center cursor-pointer lg:text-sm sm:text-xs font-sans">
       <div
         onClick={onClickHandler}
         className={`rounded-lg items-center justify-center px-3 py-2 ${

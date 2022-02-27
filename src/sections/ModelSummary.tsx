@@ -21,14 +21,14 @@ export default function ModelSummary() {
     }
   };
   return (
-    <div className="flex flex-col items-center lg:mx-64 sm:mx-16 mt-20 pb-12 ">
+    <div className="flex flex-col items-center lg:mx-64 sm:mx-4 mt-20 pb-12 ">
       <div className="flex flex-col items-center space-y-8 lg:w-2/3 sm:w-full">
         <ModelDescription />
         <div className="w-24">
           <RoundedBtn value={'Download'} />
         </div>
       </div>
-      <p className="font-bold text-xl mt-16 mb-8">Model Summary</p>
+      <p className="font-bold lg:text-xl sm:text-lg mt-16 mb-8">Model Summary</p>
       <div className="mb-10">
         <Filter items={[]} />
       </div>

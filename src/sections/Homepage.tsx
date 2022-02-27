@@ -21,7 +21,7 @@ export default function Homepage() {
       <div className="bg-[#1A2238] pt-10 pb-24 w-full ">
         <BannerDescription />
       </div>
-      <div className="flex lg:flex-row md:flex-col sm:flex-col lg:space-x-36 sm:space-x-0 sm:items-center justify-between mx-44 mt-[65px] mb-28">
+      <div className="flex lg:flex-row md:flex-col sm:flex-col lg:space-x-36 sm:space-x-0 sm:items-center justify-between lg:mx-44 sm:mx-4 mt-[65px] mb-28">
         <div className="flex flex-col space-y-2">
           {predictionProvider.prediction != '' ? (
             <PredictionCard
@@ -35,9 +35,9 @@ export default function Homepage() {
 
         {/* prediction container */}
 
-        <div className="flex flex-col overflow-auto  space-y-2  pt-12 lg:justify-start sm:justify-start lg:items-center sm:items-start  lg:h-[450px] sm:h-[350px] w-[500px] pr-6">
+        <div className="flex flex-col   space-y-2  pt-12 lg:justify-start sm:justify-start lg:items-center sm:items-start  lg:h-[450px] sm:h-[350px] lg:w-[500px] sm:w-full lg:pr-6 sm:pr-0">
           <div className="flex flex-col items-center justify-center space-y-10 pt-16">
-            <p className="text-lg font-medium font-sans text-center text-gray-700">
+            <p className="lg:text-lg sm:text-base font-medium font-sans text-center text-gray-700">
               You can predict among the 12 labels. View model details to check about the models
               summary and details.
             </p>

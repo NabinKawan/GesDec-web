@@ -12,7 +12,7 @@ export default function CornerRoundedBtn({
 }: CornerRoundedBtnProps) {
   return (
     <p
-      className={`flex rounded-lg items-center text-white text-sm font-medium  justify-center px-4 py-2  ${btnColor} hover:bg-primary cursor-pointer`}
+      className={`flex rounded-lg items-center text-white lg:text-sm sm:text-xs font-medium  justify-center px-4 py-2  ${btnColor} hover:bg-primary cursor-pointer`}
     >
       {value}
     </p>

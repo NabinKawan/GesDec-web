@@ -139,16 +139,16 @@ export default function cameraRefFrameCard() {
   });
 
   return iscameraRefOn ? (
-    <div className="flex flex-col bg-gray-300 shadow-xl border-2 border-gray-400  justify-start items-center   rounded-md   h-[450px] w-[500px] space-y-4">
+    <div className="flex flex-col bg-gray-300 shadow-xl border-2 border-gray-400  justify-start items-center   rounded-md   h-[450px] lg:w-[500px] sm:w-full space-y-4">
       <Webcam className="spinner h-[375px] w-full" ref={webcamRef} />
       <div className="w-20  cursor-pointer" onClick={onClickHandler}>
         <CornerRoundedBtn value={'Stop'} btnColor="bg-dangerColor" />
       </div>
     </div>
   ) : (
-    <div className="flex flex-col bg-gray-300 shadow-xl border-2 border-gray-400  justify-center items-center   rounded-md   h-[450px] w-[500px] space-y-12">
+    <div className="flex flex-col bg-gray-300 shadow-xl border-2 border-gray-400  justify-center items-center   rounded-md   h-[450px] lg:w-[500px] sm:w-full space-y-12">
       <img src="/gifs/welcome.gif" />
-      <div className="w-36 cursor-pointer" onClick={onClickHandler}>
+      <div className="lg:w-36  cursor-pointer" onClick={onClickHandler}>
         <CornerRoundedBtn value={'Start Prediction'} btnColor={'bg-blue-500'} />
       </div>
     </div>
