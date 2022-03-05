@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState, useContext } from 'react';
 import CornerRoundedBtn from '../items/button/CornerRoundedBtn';
-import { Colors } from '../models/enums/ColorsEnum';
 import { Holistic } from '@mediapipe/holistic';
 import * as cam from '@mediapipe/camera_utils';
 import Webcam from 'react-webcam';
@@ -8,19 +7,29 @@ import * as tf from '@tensorflow/tfjs';
 import predictionContext from '../context/prediction/PredictionContext';
 import { PredictionContextDto } from '../models/dtos/ContextDtos';
 import signs from '../models/constants/Signs';
+import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 export default function cameraRefFrameCard() {
   const [iscameraRefOn, setcameraRef] = useState(false);
-  // const [isCamerStart, setCameraStart] = useState(true);
+  const [isCameraStart, setCameraStart] = useState(false);
   const predictionProvider = useContext(predictionContext) as PredictionContextDto;
   const webcamRef = useRef(null);
   const cameraRef = useRef(null);
   const predictionsRef = useRef([]);
   const modelRef = useRef(null);
   const sequenceRef = useRef([]);
-  const threshold = 0.0;
-  console.log('cameraFrame');
-
+  // const [socketUrl, setSocketUrl] = useState('ws://localhost:5000/ws');
+  // const { sendMessage, lastMessage, lastJsonMessage, readyState, sendJsonMessage } = useWebSocket(
+  //   socketUrl,
+  //   {
+  //     onMessage: (e) => {
+  //       if (cameraRef.current !== null) {
+  //         const data = JSON.parse(e.data);
+  //         predictionProvider.insertPrediction(data['prediction'], data['probability']);
+  //       }
+  //     },
+  //   },
+  // );
   // flatten the results of the keypoints
   function extractKeypoints(results) {
     const face = results.faceLandmarks
@@ -46,7 +55,6 @@ export default function cameraRefFrameCard() {
   const stopCamera = () => {
     let stream = webcamRef.current.video.srcObject;
     const tracks = stream.getTracks();
-
     tracks.forEach((track) => track.stop());
     webcamRef.current.video.srcObject = null;
     cameraRef.current = null;
@@ -55,14 +63,14 @@ export default function cameraRefFrameCard() {
   async function onResults(results) {
     const keypoints = extractKeypoints(results);
     // console.log(keypoints);
+    // sendJsonMessage({
+    //   keypoints: keypoints,
+    // });
+
+    // console.log(keypoints);
     sequenceRef.current.push(keypoints);
     sequenceRef.current = sequenceRef.current.slice(-30);
     if (sequenceRef.current.length == 30) {
-      // console.log(sequenceRef.current.length);
-      // const dummy = await modelRef.current.predict(
-      //   tf.expandDims(sequenceRef.current.slice(-30), 0),
-      // );
-      // console.log(dummy.dataSync());
       const res = await modelRef.current
         .predict(tf.expandDims(sequenceRef.current, 0))
         .arraySync()[0];
@@ -72,16 +80,18 @@ export default function cameraRefFrameCard() {
       predictionsRef.current.push(index);
       console.log(predictionsRef.current.slice(-20));
       // console.log(tf.unique(predictionsRef.current.slice(-20)));
-      if (tf.unique(predictionsRef.current.slice(-20)).values.arraySync()[0] == index) {
-        // if (res[index] > 0.0) {
-        const prediction = signs[index];
-        console.log(prediction);
+      if (tf.unique(predictionsRef.current.slice(-20)).values.arraySync()[0] === index) {
+        if (res[index] > 0.5) {
+          const prediction = signs[index];
+          console.log(prediction);
 
-        predictionProvider.insertPrediction(
-          prediction,
-          Math.round(res[parseInt(index.toString())] * 100),
-        );
-        // }
+          predictionProvider.insertPrediction(
+            prediction,
+            Math.round(res[parseInt(index.toString())] * 100),
+          );
+        }
+      } else {
+        predictionProvider.insertPrediction('Analyzing...', 0);
       }
     }
   }
@@ -93,6 +103,7 @@ export default function cameraRefFrameCard() {
       sequenceRef.current = [];
       predictionsRef.current = [];
       setcameraRef(false);
+      setCameraStart(false);
     } else {
       setcameraRef(true);
     }
@@ -100,7 +111,6 @@ export default function cameraRefFrameCard() {
   useEffect(() => {
     if (cameraRef.current == null) {
       // initialize holistic
-
       const holistic = new Holistic({
         locateFile: (file) => {
           return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
@@ -124,8 +134,10 @@ export default function cameraRefFrameCard() {
         });
         //  starts the cameraRef session for extracting keypoints
         cameraRef.current.start();
-        async () => {};
-        // setCameraStart(true);
+        // setCameraStart({ webcam: true, cam: true });
+        setTimeout(function () {
+          setCameraStart(true);
+        }, 5000);
       }
     }
     if (modelRef.current == null) {
@@ -139,9 +151,17 @@ export default function cameraRefFrameCard() {
   });
 
   return iscameraRefOn ? (
-    <div className="flex flex-col bg-gray-300 shadow-xl border-2 border-gray-400  justify-start items-center   rounded-md   h-[450px] lg:w-[500px] sm:w-full space-y-4">
-      <Webcam className="spinner h-[375px] w-full" ref={webcamRef} />
-      <div className="w-20  cursor-pointer" onClick={onClickHandler}>
+    <div className="flex flex-col spinner bg-gray-300 shadow-xl border-2 border-gray-400  justify-start items-center   rounded-md   h-[450px] lg:w-[500px] sm:w-full ">
+      <Webcam
+        className={` h-[375px] w-full ${isCameraStart ? 'block' : 'hidden'}`}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        onUserMedia={() => {
+          console.log('hello world');
+        }}
+      />
+      <div className={` h-[375px] w-full ${!isCameraStart ? 'block' : 'hidden'} `} />
+      <div className="my-4 w-20  cursor-pointer" onClick={onClickHandler}>
         <CornerRoundedBtn value={'Stop'} btnColor="bg-dangerColor" />
       </div>
     </div>

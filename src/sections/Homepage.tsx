@@ -28,7 +28,9 @@ export default function Homepage() {
               title={predictionProvider.prediction}
               accuracy={predictionProvider.getAccuracy()}
             />
-          ):<div className='h-12'/>}
+          ) : (
+            <div className="h-12" />
+          )}
           {/* camera container */}
           <CameraFrameCard />
         </div>
