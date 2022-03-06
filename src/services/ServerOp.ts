@@ -2,7 +2,7 @@ export default class ServerOp {
   static async postFeedback(feedback: string) {
     try {
       console.log('hello');
-      const response = await fetch('https://gesdec-api.herokuapp.com/feedback', {
+      const response = await fetch(`${process.env.API_KEY}/feedback`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -22,7 +22,7 @@ export default class ServerOp {
   static async downloadModel() {
     try {
       console.log('hello');
-      const response = await fetch('https://gesdec-api.herokuapp.com/model', {
+      const response = await fetch(`${process.env.API_KEY}/model`, {
         method: 'GET',
         headers: {
           'content-type': 'application/json',

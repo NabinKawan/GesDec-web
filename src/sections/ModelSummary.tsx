@@ -29,7 +29,7 @@ export default function ModelSummary() {
           <p className="font-bold lg:text-2xl sm:text-lg ">Model Summary</p>
           <ModelDescription />
           <a
-            href="https://gesdec-api.herokuapp.com/group1-shard1of1.bin"
+            href={`${process.env.API_KEY}/group1-shard1of1.bin`}
             download
             className="w-24"
             onClick={() => {

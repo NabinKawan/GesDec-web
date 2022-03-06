@@ -10,8 +10,22 @@ export default function FeedbackForm() {
   const [status, setStatus] = useState(null);
   const [feedback, setFeedback] = useState(null);
   // const feedbackRef = useRef(null);
+  async function handleKeyPress(target) {
+    if (target.charCode === 13 && feedback !== '' && feedback !== null) {
+      setFetching(true);
+      const response = await ServerOp.postFeedback(feedback);
+      setFetching(false);
+      if (response != null) {
+        setStatus('success');
+        setFeedback('');
+      } else {
+        setStatus('failed');
+      }
+    }
+  }
+
   const onClickHandler = async () => {
-    if (feedback != null && feedback != '') {
+    if (feedback !== null && feedback !== '') {
       setFetching(true);
       const response = await ServerOp.postFeedback(feedback);
       setFetching(false);
@@ -38,6 +52,7 @@ export default function FeedbackForm() {
           <input
             placeholder="Suggestion to improve this gesture detection?"
             onChange={onChangeHandler}
+            onKeyPress={handleKeyPress}
             value={feedback}
             className="w-full py-1  focus:outline-none lg:text-base sm:text-sm"
           />
