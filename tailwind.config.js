@@ -7,17 +7,17 @@ module.exports = {
     'src/items/form/*.{js,jsx,ts,tsx}',
     'src/items/button/*.{js,jsx,ts,tsx}',
     'src/cards/*.{js,jsx,ts,tsx}',
-    'src/context/**/*.{js,jsx,ts,tsx}'
+    'src/context/**/*.{js,jsx,ts,tsx}',
   ], // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         primary: '#FF6A3D',
-        secondPrimary:'#9DAAF2',
+        secondPrimary: '#9DAAF2',
         bannerColor: '#D8E4FF',
         highLight: '#EBF8FF',
         focusBorder: '#3387C3',
-        borderColor:'#FD3259',
+        borderColor: '#FD3259',
         backgroundColor: '#E5E5E5',
         cardBackgroundColor: '#C5C5C5',
         lightBackground: '#F9FBFD',
@@ -26,9 +26,9 @@ module.exports = {
         lightTextColor: '#FD507E',
         activeFilterColor: '#000000',
         pendingColor: '#F0D751',
-        successColor:'#57A698',
-        dangerColor:'#C22A52',
-        processingColor:'#F58765',
+        successColor: '#57A698',
+        dangerColor: '#C22A52',
+        processingColor: '#F58765',
         inactiveFilterColor: '#999292',
         iconColor: '#727272',
         gray: {
@@ -151,6 +151,7 @@ module.exports = {
       fontFamily: {
         inter: ['Inter'],
         openSans: ['Open Sans'],
+        merriweather: ['Merriweather'],
         roboto: ['Roboto'],
         robotoMono: ['Roboto Mono'],
         readexPro: ['Readex Pro'],
@@ -159,7 +160,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      display: ["group-hover"],
+      display: ['group-hover'],
     },
   },
   plugins: [],

@@ -7,7 +7,7 @@ export default function Home() {
       <Head>
         <title>GesDec - Gesture Detection</title>
       </Head>
-      <div className="bg-gray-200 font-sans">
+      <div className="bg-white font-merriweather">
         <Homepage />
         <ModelSummary />
       </div>

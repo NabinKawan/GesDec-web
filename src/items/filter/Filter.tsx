@@ -14,12 +14,12 @@ export default function Filter({ items }) {
   };
 
   return (
-    <div className="flex space-x-6 justify-center cursor-pointer lg:text-sm sm:text-xs font-sans">
+    <div className="flex space-x-6 justify-center cursor-pointer lg:text-sm sm:text-xs ">
       <div
         onClick={onClickHandler}
         className={`rounded-lg items-center justify-center px-3 py-2 ${
           selected == FilterItems.Accuracy_graph
-            ? 'bg-gray-300 text-activeFilterColor font-medium'
+            ? 'bg-gray-200 text-activeFilterColor font-medium'
             : 'text-inactiveFilterColor'
         } `}
       >
@@ -29,7 +29,7 @@ export default function Filter({ items }) {
         onClick={onClickHandler}
         className={`rounded-lg items-center justify-center px-3 py-2 ${
           selected == FilterItems.Loss_graph
-            ? 'bg-gray-300 text-activeFilterColor font-medium'
+            ? 'bg-gray-200 text-activeFilterColor font-medium'
             : 'text-inactiveFilterColor'
         } `}
       >
@@ -39,7 +39,7 @@ export default function Filter({ items }) {
         onClick={onClickHandler}
         className={`rounded-lg items-center justify-center px-3 py-2 ${
           selected == FilterItems.Confusion_Matrix
-            ? 'bg-gray-300 text-activeFilterColor font-medium'
+            ? 'bg-gray-200 text-activeFilterColor font-medium'
             : 'text-inactiveFilterColor'
         } `}
       >
