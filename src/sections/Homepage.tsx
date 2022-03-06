@@ -24,7 +24,7 @@ export default function Homepage() {
         <BannerDescription />
         <img src="gifs/sl_gesture.gif" className="h-[300px]" />
       </div>
-      <motion.div className="flex lg:flex-row md:flex-col sm:flex-col lg:space-x-36 sm:space-x-0 sm:items-center justify-between lg:mx-44 sm:mx-4 mt-[65px] mb-28">
+      <motion.div className="flex lg:flex-row md:flex-col sm:flex-col lg:space-x-36 sm:space-x-0 sm:items-center justify-between lg:mx-44 sm:mx-4 mt-16 mb-28">
         <div className="flex flex-col space-y-2">
           {predictionProvider.prediction != '' ? (
             <PredictionCard

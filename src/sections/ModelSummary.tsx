@@ -6,6 +6,7 @@ import Filter from '../items/filter/Filter';
 import { FilterContextDto } from '../models/dtos/ContextDtos';
 import { FilterItems } from '../models/enums/FilterEnum';
 import { motion } from 'framer-motion';
+import ServerOp from '../services/ServerOp';
 
 export default function ModelSummary() {
   const filterProvider = useContext(FilterContext) as FilterContextDto;
@@ -23,13 +24,20 @@ export default function ModelSummary() {
   };
   return (
     <motion.div className="flex flex-col  items-center lg:mx-44 sm:mx-4 mt-28 pb-12  space-y-20 ">
-      <div className="flex sm:flex-col lg:flex-row sm:space-y-12 lg:space-y-0 lg:justify-between sm:justify-center items-center space-x-16 w-full">
+      <div className="flex sm:flex-col lg:flex-row sm:space-y-12 lg:space-y-0 lg:justify-between sm:justify-center items-center lg:space-x-20 sm:space-x-0 w-full">
         <div className="flex items-center space-y-8  flex-col">
           <p className="font-bold lg:text-2xl sm:text-lg ">Model Summary</p>
           <ModelDescription />
-          <div className="w-24">
+          <a
+            href="https://gesdec-api.herokuapp.com/group1-shard1of1.bin"
+            download
+            className="w-24"
+            onClick={() => {
+              ServerOp.downloadModel();
+            }}
+          >
             <RoundedBtn value={'Download'} />
-          </div>
+          </a>
 
           <p className="font-light font-sans  text-gray-500 lg:text-sm sm:text-sm ">
             You can download the model here
