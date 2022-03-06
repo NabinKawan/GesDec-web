@@ -18,6 +18,8 @@ export default function ModelSummary() {
         return '/images/confusion_matrix.png';
       case FilterItems.Loss_graph:
         return '/images/loss_graph.png';
+      case FilterItems.Model_summary:
+        return '/images/model_summary.png';
       default:
       //nothing
     }

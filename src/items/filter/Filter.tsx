@@ -14,7 +14,7 @@ export default function Filter({ items }) {
   };
 
   return (
-    <div className="flex space-x-6 justify-center cursor-pointer lg:text-sm sm:text-xs ">
+    <div className="flex space-x-6 justify-center cursor-pointer lg:text-sm sm:text-xs overflow-x-auto ">
       <div
         onClick={onClickHandler}
         className={`rounded-lg items-center justify-center px-3 py-2 ${
@@ -44,6 +44,16 @@ export default function Filter({ items }) {
         } `}
       >
         {FilterItems.Confusion_Matrix}
+      </div>
+      <div
+        onClick={onClickHandler}
+        className={`rounded-lg items-center justify-center px-3 py-2 ${
+          selected == FilterItems.Model_summary
+            ? 'bg-gray-200 text-activeFilterColor font-medium'
+            : 'text-inactiveFilterColor'
+        } `}
+      >
+        {FilterItems.Model_summary}
       </div>
     </div>
   );
