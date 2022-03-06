@@ -23,7 +23,7 @@ export default function ModelSummary() {
   };
   return (
     <motion.div className="flex flex-col  items-center lg:mx-44 sm:mx-4 mt-28 pb-12  space-y-20 ">
-      <div className="flex justify-between items-center space-x-16 w-full">
+      <div className="flex sm:flex-col lg:flex-row sm:space-y-12 lg:space-y-0 lg:justify-between sm:justify-center items-center space-x-16 w-full">
         <div className="flex items-center space-y-8  flex-col">
           <p className="font-bold lg:text-2xl sm:text-lg ">Model Summary</p>
           <ModelDescription />
@@ -54,7 +54,7 @@ export default function ModelSummary() {
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 50 }}
-            className="flex w-[500px] h-[300px]  justify-center"
+            className="flex lg:w-[500px] lg:h-[300px]  justify-center"
           >
             <img src={getImgSrc(filterProvider.selected)} />
           </motion.div>
