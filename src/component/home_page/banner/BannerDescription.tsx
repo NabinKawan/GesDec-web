@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function BannerDescription() {
   return (
-    <div className="flex flex-col space-y-4  items-start justify-start text-white font-sans pt-12">
+    <div className="flex flex-col space-y-4  items-start justify-start text-white font-sans lg:pt-12 sm:pt-4">
       <p className="lg:text-3xl sm:text-xl font-medium ">Gesture Detection and Recognition</p>
       <motion.div
         initial={{ x: '-200', opacity: 0 }}

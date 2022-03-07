@@ -9,7 +9,8 @@ import { PredictionContextDto } from '../models/dtos/ContextDtos';
 import signs from '../models/constants/Signs';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
-export default function cameraRefFrameCard() {
+export default function CameraFrameCard() {
+  console.log('camera frame');
   const [iscameraRefOn, setcameraRef] = useState(false);
   const [isCameraStart, setCameraStart] = useState(false);
   const predictionProvider = useContext(predictionContext) as PredictionContextDto;
@@ -74,16 +75,16 @@ export default function cameraRefFrameCard() {
       const res = await modelRef.current
         .predict(tf.expandDims(sequenceRef.current, 0))
         .arraySync()[0];
-      console.log(res);
+      // console.log(res);
       const index = parseInt(tf.argMax(res).arraySync().toString());
 
       predictionsRef.current.push(index);
-      console.log(predictionsRef.current.slice(-20));
+      // console.log(predictionsRef.current.slice(-20));
       // console.log(tf.unique(predictionsRef.current.slice(-20)));
       if (tf.unique(predictionsRef.current.slice(-20)).values.arraySync()[0] === index) {
         if (res[index] > 0.5) {
           const prediction = signs[index];
-          console.log(prediction);
+          // console.log(prediction);
 
           predictionProvider.insertPrediction(
             prediction,
@@ -128,16 +129,19 @@ export default function cameraRefFrameCard() {
         cameraRef.current = new cam.Camera(webcamRef.current.video, {
           onFrame: async () => {
             await holistic.send({ image: webcamRef.current.video });
+            setCameraStart(true);
           },
           width: 1280,
           height: 720,
         });
         //  starts the cameraRef session for extracting keypoints
+
         cameraRef.current.start();
+
         // setCameraStart({ webcam: true, cam: true });
-        setTimeout(function () {
-          setCameraStart(true);
-        }, 5000);
+        // setTimeout(function () {
+        //   setCameraStart(true);
+        // }, 5000);
       }
     }
     if (modelRef.current == null) {
@@ -145,7 +149,7 @@ export default function cameraRefFrameCard() {
       tf.loadLayersModel('https://gesdec-api.herokuapp.com/model').then((value) => {
         modelRef.current = value;
         // modelRef.current.save('indexeddb://SLR');
-        console.log(modelRef.current);
+        // console.log(modelRef.current);
       });
     }
   });
@@ -156,9 +160,9 @@ export default function cameraRefFrameCard() {
         className={` h-[375px] w-full ${isCameraStart ? 'block' : 'hidden'}`}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
-        onUserMedia={() => {
-          console.log('hello world');
-        }}
+        // onUserMedia={() => {
+        //   console.log('hello world');
+        // }}
       />
       <div className={` h-[375px] w-full ${!isCameraStart ? 'block' : 'hidden'} `} />
       <div className="my-4 w-20  cursor-pointer" onClick={onClickHandler}>

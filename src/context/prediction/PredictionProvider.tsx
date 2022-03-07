@@ -14,7 +14,7 @@ export default function PredictionProvider({ children }) {
 
   const insertPrediction = (prediction, accuracy) => {
     _predictions.push(prediction);
-    console.log(accuracy);
+    // console.log(accuracy);
     _accuracy.current = accuracy;
     setPrediction(prediction);
   };
