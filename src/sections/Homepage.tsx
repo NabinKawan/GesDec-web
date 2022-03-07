@@ -20,7 +20,7 @@ export default function Homepage() {
     <div>
       <Navbar from="Homepage" />
       {/* banner container */}
-      <div className="flex lg:flex-row sm:flex-col lg:space-y-0 sm:space-y-8 sm:px-4 lg:justify-between sm:justify-center  items-center  bg-[#1A2238] pt-16 pb-20 w-full lg:px-44  ">
+      <div className="flex lg:flex-row sm:flex-col lg:space-y-0 sm:space-y-8 sm:px-4 lg:space-x-32 sm:space-x-0 lg:justify-between sm:justify-center  items-start  bg-[#1A2238] pt-16 pb-20 w-full lg:px-44  ">
         <BannerDescription />
         <img src="gifs/sl_gesture.gif" className="h-[300px]" />
       </div>
