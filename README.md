@@ -1,34 +1,95 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GesDec 
+GesDec is an app which detects the sign gestures. The app is deployed in herokuapp https://gesdec.herokuapp.com/
 
-## Getting Started
+## Features:
+* Detect sign gestures
+* Send feedback
+* Download the model
+* View model summary,confusion matrix, loss graph
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+## Run project
+``` 
+* git clone https://github.com/NibanK/GesDec-web.git
+* npm install 
+* npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Eslint and prettier setup
+## What it does ?
+#### Eslint
+* Improves quality of the code by improving readability, removing errors before execution
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+#### Prettier
+* Formats your code
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Installing
+1.  ``` npm install --save-dev @babel/eslint-parser eslint eslint-config-airbnb eslint-config-prettier eslint-plugin-prettier eslint-plugin-import  ```
+    
+    Here we added eslint for code-quality rules and we will follow the Airbnb js/react standard for that.
+    Also, we added prettier which will format your code to follow a specific set of formatting rules. Eslint-plugin-prettier helps to use prettier as a plugin for eslint.
+    And the job of eslint-config-prettier is to turn off all ESLint rules that are unnecessary anymore or might conflict with Prettier rules.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2. Add .prettierrc.json file:
+    ```
+    {
+        "printWidth": 100,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "all"
+    }
+    ```
+    The formating rules will be taken from this file. You can also change some default rules as your requirement.
 
-## Learn More
+3. Add .prettierignore file to ignore formating for the specific files:
+    ```
+    node_modules
+    build
+    .gitlab-ci.yml
+    .github
+    README.md
+    ```
+3. For eslint add .eslintrc
+    ```
+    {
+        "parser": "@babel/eslint-parser",
+        "parserOptions": {
+            "sourceType": "module",
+            "requireConfigFile": false,
+            "allowImportExportEverywhere": false,
+            "codeFrame": false
+        },
+        "extends": ["airbnb"],
+        "env": {
+            "browser": true,
+            "jest": true
+        },
+        "rules": {
+            "max-len": ["error", { "code": 100 }],
+            "prefer-promise-reject-errors": ["off"],
+            "react/jsx-filename-extension": ["off"],
+            "react/prop-types": ["warn"],
+            "no-return-assign": ["off"],
+            "no-unused-vars":"warn"
+        },
+        "plugins": ["prettier"]
+    }
+    ``` 
+    You can also ignore linting for specific files by adding .eslintignore
 
-To learn more about Next.js, take a look at the following resources:
+4. In package.json add below portion in scripts section
+    ```
+    "scripts": {
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+   ```
+    Then you can lint and fix whole code using this by npm run lint or npm run lint:fix
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Now choose default formatter as eslint 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Typescript setup
+## Installation
+``` npm install --save-dev typescript @types/node @types/react @types/react-dom @types/jest ```
+Rename atleast one the file to .tsx/ts so that after starting server it will generate tsconfig.json file automatically.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
