@@ -1,5 +1,6 @@
 # GesDec 
 GesDec is an app which detects the sign gestures. The app is deployed in herokuapp https://gesdec.herokuapp.com/
+API Repo: https://github.com/NabinKawan/GesDec-api 
 
 ## Features:
 * Detect sign gestures
